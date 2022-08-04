@@ -15,6 +15,7 @@ class RepositoryServiceProvier extends ServiceProvider
     {
         //
         $this->app->bind('App\Http\Interfaces\API\AuthInterface','App\Http\Repositories\API\AuthRepository');
+        $this->app->bind('App\Http\Interfaces\API\TodoInterface','App\Http\Repositories\API\TodoRepository');
     }
 
     /**

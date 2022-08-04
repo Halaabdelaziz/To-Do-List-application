@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\TodoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,7 @@ use App\Http\Controllers\API\AuthController;
 // });
 Route::group(['middleware' => ['auth:sanctum',]],function(){
     Route::post('/logout',[AuthController::class,'logout']);
+    Route::post('/all',[TodoController::class,'index']);
 
 });
 Route::post('/register',[AuthController::class,'register']);
