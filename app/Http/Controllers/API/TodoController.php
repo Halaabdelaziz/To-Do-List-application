@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\addNewTodo;
 use App\Http\Controllers\Controller;
 use App\Http\Interfaces\API\TodoInterface;
 
@@ -39,9 +40,10 @@ class TodoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(addNewTodo $request)
     {
         //
+        return $this->_TodoInterface->store($request);
     }
 
     /**
@@ -76,7 +78,7 @@ class TodoController extends Controller
     public function update(Request $request, $id)
     {
         //
-        return $this->_TodoInterface->update( $request, $id);
+        return $this->_TodoInterface->update($request, $id);
     }
 
     /**

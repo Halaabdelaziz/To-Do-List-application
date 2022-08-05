@@ -21,7 +21,10 @@ use App\Http\Controllers\API\TodoController;
 // });
 Route::group(['middleware' => ['auth:sanctum',]],function(){
     Route::post('/logout',[AuthController::class,'logout']);
-    Route::post('/all',[TodoController::class,'index']);
+    Route::get('/all',[TodoController::class,'index']);
+    Route::post('/add',[TodoController::class,'store']);
+    Route::patch('/update/{id}',[TodoController::class,'update']);
+    Route::delete('/delete/{id}',[TodoController::class,'destroy']);
 
 });
 Route::post('/register',[AuthController::class,'register']);
