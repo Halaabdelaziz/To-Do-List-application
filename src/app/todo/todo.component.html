@@ -1,0 +1,87 @@
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+<div id="header">
+   <div class="w-100">
+    <h1 class="text-center">ToDo List</h1>
+   </div>
+    <button class="btn btn-light">Create Task</button>
+</div>
+
+<div class="container">
+    <table class="table mt-3">
+        <thead>
+          <tr>
+            <th scope="col">Name of Todo </th>
+            <th scope="col">Description</th>
+            <th scope="col">Start date</th>
+            <th scope="col">Status</th>
+            <th scope="col">action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let todo of todoLsit">
+            <td>{{todo.name}}</td>
+            <td>{{todo.description}}</td>
+            <td>{{todo.start_date}}</td>
+            <td>{{todo.status}}</td>
+            <td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit"
+              (click)="getTodoById(todo.id)">edit</button></td>
+            <td><button class="btn btn-danger" (click)="delete(todo.id)">delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+
+        <!-- edit modal -->
+        <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered ">
+          <div class="modal-content">
+              <form [formGroup]='editForm' (ngSubmit)="submitForm(editForm)">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Edit Todo</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body row mx-auto">
+                  <ng-template [ngIf]="todo">
+                  <div class="modal__right col-md-6">
+                      <label for="name">Name</label>
+                      <input class="form-control mb-2" type="text" name="name" formControlName="todo.name">
+                      <label for="name">Description</label>
+                      <input class="form-control mb-2" type="text" name="description" formControlName="todo.description">
+                      <label for="name">Start Date</label>
+                      <input class="form-control mb-2" type="text" name="start_date" formControlName="todo.start_date">
+                      <label for="status">Status</label>
+                      <input class="form-control mb-2" type="text" name="status" formControlName="todo.status">
+                  </div>
+                  </ng-template>
+              </div>
+              <div class="modal-footer">
+                  <input type="submit" class="btn btn-primary" value="Save changes">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                  (click)="redirecttodash()">Close</button>
+              </div>
+              </form>
+          </div>
+          </div>
+      </div>

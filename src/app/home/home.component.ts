@@ -11,15 +11,7 @@ export class HomeComponent implements OnInit {
   constructor(private _TodoService:TodoService) { }
 
   ngOnInit(): void {
-    this.getAllTodo();
+   
   }
-  getAllTodo(){
-  this._TodoService.getTodo().subscribe(
-    (res)=>{console.log(res);
-    },
-    (err)=>{console.log(err);
-    },
-    ()=>{}
-  )
-  }
+
 }

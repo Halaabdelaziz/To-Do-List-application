@@ -3,23 +3,36 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-<div class="w-75 m-auto py-5">
+<div class="w-75 m-auto py-5 ">
     <h2>Register now</h2>
-    <form class="container" [formGroup]='registerForm'>
+
+
+
+    <form class="container" [formGroup]='registerForm' (ngSubmit)="submitForm(registerForm)">
         <div class="mb-3 ">
-            <label for="nameInputEmail1" class="form-label">name</label>
-            <input  formControlName="name" type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <div id="nameHelp" class="form-text">We'll never share your email with anyone else.</div>
-          </div>
+            <label for="exampleInputName" class="form-label">Name</label>
+            <input  formControlName="name" type="text" name="name" class="form-control" id="exampleInputName" aria-describedby="emailHelp">
+            <div *ngIf="registerForm.get('name')?.errors != null && registerForm.get('name')?.touched" class="alert mt-2 alert-danger">
+                <p>you must enter your name</p>
+            </div>
+        </div>
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email"  formControlName="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email"  formControlName="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <div *ngIf="registerForm.get('email')?.errors != null && registerForm.get('email')?.touched" class="alert mt-2 alert-danger">
+            <p>you must enter your email</p>
+        </div>
+        <div *ngIf="error" class="alert alert-danger">
+            {{error}}
+        </div>
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Password</label>
           <input type="password" formControlName="password" name="password" class="form-control" id="exampleInputPassword1">
+          <div *ngIf="registerForm.get('password')?.errors != null && registerForm.get('password')?.touched" class="alert mt-2 alert-danger">
+            <p>you must enter your password</p>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <button [disabled]="registerForm.invalid" type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
