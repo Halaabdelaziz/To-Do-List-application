@@ -8,6 +8,8 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TodoComponent } from './todo/todo.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +18,16 @@ import { TodoComponent } from './todo/todo.component';
     RegisterComponent,
     LoginComponent,
     TodoComponent,
+    NavbarComponent,
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+  
   ],
   providers: [],
   bootstrap: [AppComponent]
