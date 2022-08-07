@@ -1,18 +1,19 @@
-
-<form class="container" [formGroup]='loginForm' (ngSubmit)="submitForm(loginForm)">
-    <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email"  formControlName="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <div *ngIf="loginForm.get('email')?.errors != null && loginForm.get('email')?.touched" class="alert mt-2 alert-danger">
-        <p>you must enter your email</p>
-    </div>
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" formControlName="password" name="password" class="form-control" id="exampleInputPassword1">
-      <div *ngIf="loginForm.get('password')?.errors != null && loginForm.get('password')?.touched" class="alert mt-2 alert-danger">
-        <p>you must enter your password</p>
-    </div>
-    </div>
-    <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary">Submit</button>
-</form>
+<div class="container-fluid d-flex justify-content-center align-items-center" id="login">
+    <form class="w-25" [formGroup]='loginForm' (ngSubmit)="submitForm(loginForm)">
+        <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email"  formControlName="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <div *ngIf="loginForm.get('email')?.errors != null && loginForm.get('email')?.touched" class="alert mt-2 alert-danger">
+            <p>you must enter your email</p>
+        </div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" formControlName="password" name="password" class="form-control" id="exampleInputPassword1">
+          <div *ngIf="loginForm.get('password')?.errors != null && loginForm.get('password')?.touched" class="alert mt-2 alert-danger">
+            <p>you must enter your password</p>
+         </div>
+        </div>
+        <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

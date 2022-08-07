@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   constructor(private _AuthService:AuthService,private _Router:Router) { }
 
   ngOnInit(): void {
+   
   }
   submitForm(loginForm:FormGroup){
     if(loginForm.valid){
@@ -37,4 +38,5 @@ export class LoginComponent implements OnInit {
     }
   this._AuthService.setUserData();
   }
+
 }

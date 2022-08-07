@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { allContactResponse, todo } from '../_models/todo.model';
 import { TodoService } from '../_services/todo.service';
 
 @Component({
@@ -22,7 +21,6 @@ export class TodoComponent implements OnInit {
     this._TodoService.getTodo().subscribe(
       (res) => {
         this.todoLsit = res;
-
       },
       (err) => {
         console.log(err);
@@ -33,18 +31,13 @@ export class TodoComponent implements OnInit {
   getTodoById(id: number) {
     this._TodoService.getTodoById(id).subscribe(
       (res) => {
-
         this.todo = res.id;
-        console.log(this.todo);
-
       }, (err) => {
         console.log(err);
-
       });
   }
 
   editForm: FormGroup = new FormGroup({
- 
     name: new FormControl(null),
     description: new FormControl(null),
     start_date: new FormControl(null),
@@ -59,7 +52,7 @@ export class TodoComponent implements OnInit {
   });
 
   submitForm(editForm: FormGroup) {
-    this._TodoService.editItem(editForm.value,this.todo).subscribe((res) => {
+    this._TodoService.editItem(editForm.value, this.todo).subscribe((res) => {
       this.getAllTodo();
       console.log(res);
 
@@ -71,15 +64,13 @@ export class TodoComponent implements OnInit {
     this._TodoService.addItem(addForm.value).subscribe((res) => {
       this.getAllTodo();
       console.log(res);
-      
+
     }, (err) => {
       console.log(err);
     }, () => { });
 
   }
-  // redirecttodash() {
-  //   window.location.reload();
-  // }
+
   delete(id: number) {
     this._TodoService.deleteItem(id).subscribe((res) => {
       this.getAllTodo();
@@ -87,9 +78,6 @@ export class TodoComponent implements OnInit {
     }, (err) => {
       console.log(err);
     }, () => { })
-    console.log(id);
-
-
   }
 }
 

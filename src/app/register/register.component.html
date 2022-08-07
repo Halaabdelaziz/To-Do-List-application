@@ -1,9 +1,5 @@
-<div class="w-75 m-auto py-5 ">
-    <h2>Register now</h2>
-
-
-
-    <form class="container" [formGroup]='registerForm' (ngSubmit)="submitForm(registerForm)">
+<div class="m-auto py-5 d-flex justify-content-center align-items-center" id="register">
+    <form class="container-fluid w-25" [formGroup]='registerForm' (ngSubmit)="submitForm(registerForm)">
         <div class="mb-3 ">
             <label for="exampleInputName" class="form-label">Name</label>
             <input  formControlName="name" type="text" name="name" class="form-control" id="exampleInputName" aria-describedby="emailHelp">

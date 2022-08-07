@@ -1,98 +1,105 @@
-
 <div id="header">
-   <div class="w-100">
+  <div class="w-100">
     <h1 class="text-center">ToDo List</h1>
-   </div>
-    <button  type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#add">Create Task</button>
+  </div>
+  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#add">Create Task</button>
 </div>
 
 <div class="container">
-    <table class="table mt-3">
-        <thead>
-          <tr>
-            <th scope="col">Name of Todo </th>
-            <th scope="col">Description</th>
-            <th scope="col">Start date</th>
-            <th scope="col">Status</th>
-            <th scope="col">action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let todo of todoLsit">
-            <td>{{todo.name}}</td>
-            <td>{{todo.description}}</td>
-            <td>{{todo.start_date}}</td>
-            <td>{{todo.status}}</td>
-            <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit"
-              (click)="getTodoById(todo.id)">edit</button></td>
-            <td><button class="btn btn-danger" (click)="delete(todo.id)">delete</button></td>
-          </tr>
-        </tbody>
-      </table>
+  <table class="table mt-3">
+    <thead>
+      <tr>
+        <th scope="col">Name of Todo </th>
+        <th scope="col">Description</th>
+        <th scope="col">Start date</th>
+        <th scope="col">Status</th>
+        <th scope="col">action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let todo of todoLsit">
+        <td>{{todo.name}}</td>
+        <td>{{todo.description}}</td>
+        <td>{{todo.start_date}}</td>
+        <td>{{todo.status}}</td>
+        <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit"
+            (click)="getTodoById(todo.id)">edit</button></td>
+        <td><button class="btn btn-danger" (click)="delete(todo.id)">delete</button></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-      <!-- add model -->
-      <div class="modal fade" id="add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered ">
-        <div class="modal-content">
-            <form [formGroup]='addForm' (ngSubmit)="submitAddForm(addForm)">
-              <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Add Todo</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body row mx-auto">
-                  <div class="modal__right col-md-6">
-                      <label for="name">Name</label>
-                      <input class="form-control mb-2" type="text" name="name" formControlName="name">
-                      <label for="name">Description</label>
-                      <input class="form-control mb-2" type="text" name="description" formControlName="description">
-                      <label for="name">Start Date</label>
-                      <input class="form-control mb-2" type="text" name="start_date" formControlName="start_date">
-                      <label for="status">Status</label>
-                      <input class="form-control mb-2" type="text" name="status" formControlName="status">
-                  </div>
-              </div>
-              <div class="modal-footer">
-                  <input type="submit" class="btn btn-primary" value="Save changes">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                  >Close</button>
-              </div>
-            </form>
+<!-- add model -->
+<div class="modal fade" id="add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered ">
+    <div class="modal-content">
+      <form [formGroup]='addForm' (ngSubmit)="submitAddForm(addForm)">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Todo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body row mx-auto">
+          <div class="modal__right col-md-6">
+            <label for="name">Name</label>
+            <input class="form-control mb-2" type="text" name="name" formControlName="name">
+            <label for="name">Description</label>
+            <input class="form-control mb-2" type="text" name="description" formControlName="description">
+            <label for="name">Start Date</label>
+            <input class="form-control mb-2" type="text" name="start_date" formControlName="start_date">
+            <label for="status">Status</label>
+            <select class="form-select" name="status" formControlName="status">
+              <option selected disabled>Select Status</option>
+              <option value="not started">Not started</option>
+              <option value="in progess">In progess</option>
+              <option value="completed">Completed</option>
+
+            </select>
+          </div>
         </div>
+        <div class="modal-footer">
+          <input type="submit" class="btn btn-primary" value="Save changes">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </form>
     </div>
+  </div>
+</div>
 
-        <!-- edit modal --> 
-        <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered ">
-          <div class="modal-content">
-              <form [formGroup]='editForm' (ngSubmit)="submitForm(editForm)">
-              <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Edit Todo</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body row mx-auto">
-                
-                  <div class="modal__right col-md-6"  *ngIf="todo">
-                   
-                      <label for="name">Name</label>
-                      <input class="form-control mb-2" type="text" value="" name="name" formControlName="name">
-                      <label for="name">Description</label>
-                      <input class="form-control mb-2" type="text" name="description" formControlName="description">
-                      <label for="name">Start Date</label>
-                      <input class="form-control mb-2" type="text" name="start_date" formControlName="start_date">
-                      <label for="status">Status</label>
-                      <input class="form-control mb-2" type="text" name="status" formControlName="status">
-                  </div>
-                 
-              </div>
-              <div class="modal-footer">
-                  <input type="submit" class="btn btn-primary" value="Save changes">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                 >Close</button>
-              </div>
-              </form>
+<!-- edit modal -->
+<div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered ">
+    <div class="modal-content">
+      <form [formGroup]='editForm' (ngSubmit)="submitForm(editForm)">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Todo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body row mx-auto">
+
+          <div class="modal__right col-md-6" *ngIf="todo">
+
+            <label for="name">Name</label>
+            <input class="form-control mb-2" type="text" value="" name="name" formControlName="name">
+            <label for="name">Description</label>
+            <input class="form-control mb-2" type="text" name="description" formControlName="description">
+            <label for="name">Start Date</label>
+            <input class="form-control mb-2" type="text" name="start_date" formControlName="start_date">
+            <label for="status">Status</label>
+            <select class="form-select" name="status" formControlName="status">
+              <option selected disabled>Select Status</option>
+              <option value="not started">Not started</option>
+              <option value="in progess">In progess</option>
+              <option value="completed">Completed</option>
+
+            </select>
           </div>
-          </div>
-      </div>
 
-
+        </div>
+        <div class="modal-footer">
+          <input type="submit" class="btn btn-primary" value="Save changes">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

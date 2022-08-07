@@ -10,6 +10,6 @@ export class AppComponent {
   constructor(private router: Router) {}
   title = 'todoProj';
   ngOnInit() {
-    // this.router.navigate([''])
+    // this.router.navigate(['login'])
   }
 }
