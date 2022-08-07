@@ -27,7 +27,7 @@ class RegisterRequest extends FormRequest
             //
             'name'=>'required|max:255',
             'email'=>'required|email|max:255|unique:users',
-            'password'=>'required|min:6|confirmed'
+            'password'=>'required|min:6'
         ];
     }
     public function messages()
@@ -40,7 +40,6 @@ class RegisterRequest extends FormRequest
             'email.unique'=>'this email is taken before',
             'password.required'=>'You must enter your password',
             'password.min'=>'min character is 6',
-            'password.confirmed'=>'password does not match'
         ];
     }
 }

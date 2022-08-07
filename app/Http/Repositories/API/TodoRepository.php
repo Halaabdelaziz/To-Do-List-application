@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Interfaces\API\TodoInterface;
 
 class TodoRepository implements TodoInterface{
-
+    // method to show todo list of login user
     public function index(){
         $id = Auth::user()->id;
         if(!$id){
@@ -15,11 +15,13 @@ class TodoRepository implements TodoInterface{
             ]);
         }
         $todos = Todo::where('user_id',$id)->get();
-        return response()->json([
-            'todoes'=>$todos
-        ]);
+        return $todos;
+        // return response()->json([
+        //     'todoes'=>$todos
+        // ]);
     }
 
+    // method to save new record in todo table
     public function store($request){
         Todo::create([
             'name'=>$request->name,
@@ -33,7 +35,13 @@ class TodoRepository implements TodoInterface{
             'todo'=>'new todo is created successfully'
         ]);
     }
-    public function update($request, $id){
+    public function edit($id){
+        $todo = Todo::find($id);
+        return $todo;
+
+    }
+    // method to update exist record of todo by id
+    public function update($request,$id){
         $todo = Todo::find($id);
         if(!$todo){
             return response()->json([
@@ -57,6 +65,8 @@ class TodoRepository implements TodoInterface{
             'todo'=>'todo is updated successfully'
         ]);
     }
+
+    // method to delete todo by id
     public function destroy($id){
         if(!$id){
             return response()->json([

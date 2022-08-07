@@ -66,6 +66,7 @@ class TodoController extends Controller
     public function edit($id)
     {
         //
+        return $this->_TodoInterface->edit($id);
     }
 
     /**
@@ -75,10 +76,10 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
         //
-        return $this->_TodoInterface->update($request, $id);
+        return $this->_TodoInterface->update($request,$id);
     }
 
     /**

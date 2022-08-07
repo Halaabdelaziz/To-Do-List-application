@@ -18,6 +18,7 @@ class AuthRepository implements AuthInterface{
         ]);
         $token = $user->createToken('myToken')->plainTextToken;
         return response()->json([
+            'message'=>'success',
             'user'=>$user,
             'token'=>$token,
             'token_type' => 'Bearer',
@@ -33,6 +34,7 @@ class AuthRepository implements AuthInterface{
         $user = User::where('email',$request->email)->firstOrFail();
         $token = $user->createToken('myToken')->plainTextToken;
         return response()->json([
+            'message'=>'success',
             'user'=>$user,
             'token'=>$token
         ]);

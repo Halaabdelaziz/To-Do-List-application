@@ -23,7 +23,8 @@ Route::group(['middleware' => ['auth:sanctum',]],function(){
     Route::post('/logout',[AuthController::class,'logout']);
     Route::get('/all',[TodoController::class,'index']);
     Route::post('/add',[TodoController::class,'store']);
-    Route::patch('/update/{id}',[TodoController::class,'update']);
+    Route::get('/edit/{id}',[TodoController::class,'edit']);
+    Route::post('/update/{id}',[TodoController::class,'update']);
     Route::delete('/delete/{id}',[TodoController::class,'destroy']);
 
 });
